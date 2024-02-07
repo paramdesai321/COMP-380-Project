@@ -14,7 +14,11 @@ const Login=()=>{
            value = {email}
            /> 
             
-            
+            <TextInput
+            placeholder = "Passoword"
+            onChangeText ={text=> setPassword(password)}
+            value = {password}
+            />       
             
             
             
