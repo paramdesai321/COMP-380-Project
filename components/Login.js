@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, TextInput, Button, StyleSheet,Text} from 'react-native';
+import {View, TextInput, Button, TouchableOpacity, StyleSheet,Text, ImageBackground} from 'react-native';
 
 const Login=()=>{
     const [email, setEmail] = useState('');
@@ -22,7 +22,11 @@ const Login=()=>{
             value = {password}
             secureTextEntry={true}
             />      
-            <Button title="Login" />
+        <TouchableOpacity
+      //  onPress = {onPressLogin}
+        style={styles.loginbtn}>
+        <Text style={styles.loginbtn}>LOGIN </Text>
+        </TouchableOpacity>
             
             
             
@@ -45,7 +49,15 @@ const Login=()=>{
             padding: 10,
             marginBottom: 10,
           },
+          loginbtn:{
+                backgroundColor:'blue',
+                  color:'white',
+          }
        });
+       
+         
+        
+       
         
 
 
