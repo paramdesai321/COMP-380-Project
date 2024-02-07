@@ -1,23 +1,26 @@
 import React, {useState} from 'react';
-import {View, TextInput, Button, StyleSheet} from 'react-native';
+import {View, TextInput, Button, StyleSheet,Text} from 'react-native';
 
 const Login=()=>{
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     return(
-        <View>
-            
-           <TextInput style
+        <View style={styles.container}>
+
+           <Text>Email</Text> 
+           <TextInput style={styles.input}
+           title = "Email"
            placeholder ="Email"
            onChangeText={text=> setEmail(text)}
            value = {email}
            /> 
-            
-            <TextInput
+            <Text>Passoword</Text>
+            <TextInput style={styles.input}
             placeholder = "Passoword"
-            onChangeText ={text=> setPassword(password)}
+            onChangeText ={text=> setPassword(text)}
             value = {password}
+            secureTextEntry={true}
             />      
             <Button title="Login" />
             
