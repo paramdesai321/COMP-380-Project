@@ -18,10 +18,8 @@ const Login=()=>{
             placeholder = "Passoword"
             onChangeText ={text=> setPassword(password)}
             value = {password}
-            />       
-            
-            
-            
+            />      
+            <Button title="Login" />          
             
           </View>
     )
