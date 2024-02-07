@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {view, TextInput, Button, StyleSheet} from 'react-native';
+import {View, TextInput, Button, StyleSheet} from 'react-native';
 
 const Login=()=>{
     const [email, setEmail] = useState('');
@@ -19,21 +19,13 @@ const Login=()=>{
             onChangeText ={text=> setPassword(password)}
             value = {password}
             />      
-            <Button title="Login" />          
+            <Button title="Login" />
+            
+            
+            
             
           </View>
     )
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
+
+export default Login;
