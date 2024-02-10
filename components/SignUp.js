@@ -3,6 +3,7 @@ import { View, TextInput, TouchableOpacity, Text, StyleSheet,Alert} from 'react-
 import { useNavigation } from '@react-navigation/native';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import {auth} from '../firebaseConfig';
+
 //import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 const SignUp = () => {
@@ -16,6 +17,7 @@ const SignUp = () => {
         Alert.alert('Error','Please fill in all fields');
         return; 
    }
+   setLoading
    try{
     const response = await createUserWithEmailAndPassword(auth,email,password);
     console.log(response);
