@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {View, TextInput, Button, TouchableOpacity, StyleSheet,Text, ImageBackground} from 'react-native';
 import { auth } from '../firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useNavigation } from '@react-navigation/native';
 
 
 
@@ -10,16 +11,27 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 const Login=()=>{
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    const navigation = useNavigation();
     const handleLogin= async()=>{
+      if(!email | !password){
+        Alert.alert('Error','Please fill in all fields');
+        return; 
+      }
+
         try {
             await signInWithEmailAndPassword(auth, email, password);
             console.error('User signed in successfully!');
           } catch (error) {
             console.error('Not in the database', error.message);
           }
+
+
     };
 
+     const handleSignUp=()=>{
+      
+      navigation.navigate('SignUp');
+     }
     
 
     return(
@@ -47,7 +59,8 @@ const Login=()=>{
         </TouchableOpacity>     
         <TouchableOpacity
       //  onPress = {onPressLogin}
-        style={styles.loginbtn} >
+        style={styles.loginbtn} onPress={handleSignUp}>
+        
         
         <Text style={styles.loginbtn}>Sign up </Text>
         </TouchableOpacity>           
