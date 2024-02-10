@@ -8,6 +8,7 @@ import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// 
 const firebaseConfig = {
   apiKey: "AIzaSyBi3tm8c9qauTFW5Qn4wGIXVxJ-OAaqiZ4",
   authDomain: "healthtracker-28a64.firebaseapp.com",
@@ -15,7 +16,7 @@ const firebaseConfig = {
   storageBucket: "healthtracker-28a64.appspot.com",
   messagingSenderId: "319385273685",
   appId: "1:319385273685:web:ccc1361d73123fbb7fdbdc",
-  measurementId: "G-FWS0TETV8V"
+  measurementId: "G-FWS0TETV8V",
 };
 
 // Initialize Firebase
