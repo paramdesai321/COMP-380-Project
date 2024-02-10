@@ -32,6 +32,9 @@ const Login=()=>{
       
       navigation.navigate('SignUp');
      }
+
+     const buttonOpacity =  password && email ? 1 : 0.5;
+
     
 
     return(
@@ -53,16 +56,18 @@ const Login=()=>{
             />      
         <TouchableOpacity
       //  onPress = {onPressLogin}
-        style={styles.loginbtn} onPress={handleLogin}>
+      onPress={handleLogin}
+      style={[styles.button, { opacity: buttonOpacity }]}>
         
-        <Text style={styles.loginbtn}>LOGIN </Text>
+        <Text style={styles.buttonText}>LOGIN </Text>
         </TouchableOpacity>     
         <TouchableOpacity
       //  onPress = {onPressLogin}
-        style={styles.loginbtn} onPress={handleSignUp}>
+        onPress={handleSignUp}
+        style={[styles.button, { opacity: buttonOpacity }]}>
         
         
-        <Text style={styles.loginbtn}>Sign up </Text>
+        <Text style={styles.buttonText}>Sign up </Text>
         </TouchableOpacity>           
           
           </View>
@@ -88,7 +93,18 @@ const Login=()=>{
           loginbtn:{
                 backgroundColor:'blue',
                   color:'white',
-          }
+          },
+          button: {
+            backgroundColor: '#007bff',
+            paddingVertical: 10,
+            paddingHorizontal: 20,
+            borderRadius: 5,
+          },
+          buttonText: {
+            color: '#fff',
+            fontSize: 16,
+            textAlign: 'center',
+          },
        });
        
          
