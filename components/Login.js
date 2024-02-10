@@ -1,9 +1,26 @@
 import React, {useState} from 'react';
 import {View, TextInput, Button, TouchableOpacity, StyleSheet,Text, ImageBackground} from 'react-native';
+import { auth } from '../firebaseConfig';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+
+
+
+
 
 const Login=()=>{
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const handleLogin= async()=>{
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            console.error('User signed in successfully!');
+          } catch (error) {
+            console.error('Not in the database', error.message);
+          }
+    };
+
+    
 
     return(
         <View style={styles.container}>
@@ -15,23 +32,29 @@ const Login=()=>{
            onChangeText={text=> setEmail(text)}
            value = {email}
            /> 
-            <Text>Passoword</Text>
+            <Text>Password</Text>
             <TextInput style={styles.input}
-            placeholder = "Passoword"
+            placeholder = "Password"
             onChangeText ={text=> setPassword(text)}
             value = {password}
             secureTextEntry={true}
             />      
         <TouchableOpacity
       //  onPress = {onPressLogin}
-        style={styles.loginbtn}>
+        style={styles.loginbtn} onPress={handleLogin}>
+        
         <Text style={styles.loginbtn}>LOGIN </Text>
-        </TouchableOpacity>
-            
-            
-            
-            
+        </TouchableOpacity>     
+        <TouchableOpacity
+      //  onPress = {onPressLogin}
+        style={styles.loginbtn} >
+        
+        <Text style={styles.loginbtn}>Sign up </Text>
+        </TouchableOpacity>           
+          
           </View>
+
+        
     );
 };
 
