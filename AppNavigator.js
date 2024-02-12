@@ -2,9 +2,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import Login from './components/Login';
 import Signup from './components/SignUp';
-import { StyleSheet } from 'react-native';
 import SplashScreen from './components/SplashScreen';
+import MyStats from './components/MyStats';
+import BottomNavBar from './components/BottomNavBar';
+
 import { Image } from 'react-native';
+import { StyleSheet } from 'react-native';
+
 
 // Import other screens here
 
@@ -12,37 +16,26 @@ const Stack = createStackNavigator();
 
 const AppNavigator = () => (
   <NavigationContainer>
-    
     <Stack.Navigator>
-    <Stack.Screen name ="SplashScreen" component={SplashScreen}
-       options={{
-        title: 'Harmony',
-        headerStyle: {
-          backgroundColor: 'yellow',
-          
-        },
-        headerTintColor: 'black',
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        },
-      }}
-      />
-      <Stack.Screen name="Login" component={Login} 
-      options={{
-        title: 'Login',
-        headerStyle: {
-          backgroundColor: 'yellow',
-          
-        },
-        headerTintColor: 'black',
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        },
-      }}
-      />
-      <Stack.Screen name= "SignUp" component={Signup}
+      <Stack.Screen 
+        name ="SplashScreen" 
+        component={SplashScreen}
         options={{
-          title: 'Create an account',
+          title: 'Harmony',
+          tabBarVisible: false,
+          headerStyle: {
+            backgroundColor: 'yellow',
+          },
+          headerTintColor: 'black',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+        />
+        <Stack.Screen name="Login" component={Login} 
+        options={{
+          title: 'Login',
+          tabBarVisible: false,
           headerStyle: {
             backgroundColor: 'yellow',
             
@@ -52,10 +45,32 @@ const AppNavigator = () => (
             fontWeight: 'bold',
           },
         }}
-      
-      />
-     
-    
+        />
+        <Stack.Screen name= "SignUp" component={Signup}
+          options={{
+            title: 'Create an account',
+            tabBarVisible: false,
+            headerStyle: {
+              backgroundColor: 'yellow',
+              
+            },
+            headerTintColor: 'black',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
+        
+        />
+        <Stack.Screen name= "MyStats" component={MyStats}
+          options={{
+            title: 'My Stats',
+            tabBarVisible: true,
+            // headerStyle: {
+            //   backgroundColor: 'yellow',
+            // },
+          }}
+        
+        />
     </Stack.Navigator>
   </NavigationContainer>
 );

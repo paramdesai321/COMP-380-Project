@@ -13,6 +13,10 @@ const SplashScreen = () => {
     navigation.navigate('SignUp');
   };
 
+  const handleBypass = () => {
+    navigation.navigate('MyStats');
+  };
+
   return (
     <View style={styles.container}>
       <Image
@@ -26,6 +30,9 @@ const SplashScreen = () => {
       </TouchableOpacity>
       <TouchableOpacity onPress={handleSignUp} style={styles.button}>
         <Text style={styles.buttonText}>Sign Up</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={handleBypass} style={styles.button}>
+        <Text style={styles.buttonText}>Bypass Login</Text>
       </TouchableOpacity>
     </View>
   );

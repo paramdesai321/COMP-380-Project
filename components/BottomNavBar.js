@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
-const BottomNavBar = () => {
+const BottomNavBar = ({ tabBarVisible }) => {
+
+    if (!tabBarVisible) {
+        return null; // If not visible, return null to render nothing
+    }
+
   const [selectedTab, setSelectedTab] = useState('myStats');
 
   const handleTabPress = (tabName) => {

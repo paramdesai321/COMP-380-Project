@@ -2,14 +2,14 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import BottomNavBar from './components/BottomNavBar';
-import AppNavigator from './AppNavigator'; // Import your AppNavigator component
+import AppNavigator from './AppNavigator';
 
 export default function App() {
   return (
     <View style={styles.container}>
       <AppNavigator /> 
       <StatusBar style="auto" />
-      <BottomNavBar />
+      {/* <BottomNavBar /> */}
     </View>
   );
 }
