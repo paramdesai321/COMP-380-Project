@@ -7,7 +7,7 @@ const MyStats = () => {
   return (
     <View style={styles.container}> 
       <Text style={styles.welcomeText}>My Stats</Text>
-      <BottomNavBar />
+      <BottomNavBar tabBarVisible={true}/>
     </View>
   );
 };
