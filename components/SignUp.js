@@ -17,7 +17,7 @@ const SignUp = () => {
         Alert.alert('Error','Please fill in all fields');
         return; 
    }
-   setLoading
+   
    try{
     const response = await createUserWithEmailAndPassword(auth,email,password);
     console.log(response);
