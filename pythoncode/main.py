@@ -7,12 +7,12 @@ socketio = SocketIO(app,cors_allowed_origins="*")
 
 
 def handle_message(message):
-    print("Received message: "+message
+    print("Received message: "+message)
     if message != "Used Connected!":
         (send(message, broadcast=True)
 
 
-@app.route('/')
+@app.route('./templates/index.html'))
 def index():
     return render_template("index.html")
 
