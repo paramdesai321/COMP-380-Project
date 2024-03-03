@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.4/socket.io.js"></script>
 </head>
 
 <body style="text-align:center; font-family: Arial, serif; font-size: 14pt">
     <script type="text/javascript">
         $(document).ready(function(){
 
-            var socket = io.connect("http://localhost:5000")
+            var socket = io.connect("http://192.168.1.250:5000")
             socket.on('connect', function() {
                 socket.send("User Connected!");
             });
@@ -20,6 +21,7 @@
             });
 
             $('#sendBtn').on('click', function() {
+                print("Hello");
                 socket.send($('#username').val() + ':' + $('#message').val());
                 $('#message').val('');
             });
