@@ -3,7 +3,7 @@ from flask_socketio import SocketIO, send
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'helloworld'
-socketio = SocketIO(app, cors_allowed_origins="*")
+socketio = SocketIO(app, cors_allowed_origins="*",logger=True, engineio_logger=True)
 
 
 def handle_message(message):
@@ -12,10 +12,10 @@ def handle_message(message):
         send(message, broadcast=True)
 
 
-@app.route('/   ')
+@app.route('/')
 def index():
     return render_template("index.html")
 
 
 if __name__ == '__main__':
-    socketio.run(app, host="192.168.1.250")
+    socketio.run(app,host="192.168.1.250",port=5000,allow_unsafe_werkzeug=True)
