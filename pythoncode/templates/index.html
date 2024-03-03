@@ -21,7 +21,7 @@
             });
 
             $('#sendBtn').on('click', function() {
-                print("Hello");
+                console.log("Hello");
                 socket.send($('#username').val() + ':' + $('#message').val());
                 $('#message').val('');
             });
