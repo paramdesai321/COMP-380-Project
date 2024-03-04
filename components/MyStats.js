@@ -11,11 +11,11 @@ const MyStats = () => {
             </View>
             <View style={styles.card}>
                 <Text style={styles.cardTitle}>Dashboard</Text>
-                {/* Add your dashboard content here */}
+                {/* Add dashboard content here */}
             </View>
             <View style={styles.card}>
                 <Text style={styles.cardTitle}>Journal</Text>
-                {/* Add your journal content here */}
+                {/* Add journal content here */}
             </View>
             <View style={styles.card}>
                 <Text style={styles.cardTitle}>Walk</Text>
@@ -31,7 +31,7 @@ const MyStats = () => {
             </View>
             <View style={styles.card}>
                 <Text style={styles.cardTitle}>Workout</Text>
-                {/* Add your workout content here */}
+                {/* Add workout content here */}
             </View>
             <View style={styles.card}>
                 <Text style={styles.cardTitle}>Water</Text>
