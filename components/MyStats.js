@@ -2,7 +2,7 @@ import React from 'react';
 import { ScrollView, View, TouchableOpacity, StyleSheet, Text, Image } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPlus, faCheck } from '@fortawesome/free-solid-svg-icons';
-// import any additional components you may need
+
 const MyStats = () => {
     return (
         <ScrollView style={styles.container}>
@@ -23,7 +23,7 @@ const MyStats = () => {
             </View>
 <View style={styles.card}>
                 <Text style={styles.cardTitle}>Journal</Text>
-                {/* Add your journal content here */}
+                {/* Add journal content here */}
             </View>
             <View style={styles.card}>
                 <Text style={styles.cardTitle}>Walk</Text>
@@ -43,7 +43,7 @@ const MyStats = () => {
             </View>
             <View style={styles.card}>
                 <Text style={styles.cardTitle}>Medication</Text>
-                {/* Add your medication content here */}
+                {/* Add medication content here */}
             </View>
         </ScrollView>
   );
