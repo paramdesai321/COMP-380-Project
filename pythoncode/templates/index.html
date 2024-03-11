@@ -3,36 +3,107 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Chat App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        #container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #messages {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            min-height: 200px;
+            overflow-y: auto;
+        }
+
+        #messages p {
+            margin: 5px 0;
+        }
+
+        input[type="text"] {
+            width: calc(50% - 5px);
+            margin-right: 5px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.4/socket.io.js"></script>
 </head>
 
-<body style="text-align:center; font-family: Arial, serif; font-size: 14pt">
-    <script type="text/javascript">
-        $(document).ready(function(){
+<body>
+    <div id="container">
+        <h2>Chat App</h2>
+        <div id="messages"></div>
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="text" id="message" placeholder="Message" required>
+        <button id="sendBtn">Send</button>
+    </div>
 
-            var socket = io.connect("http://192.168.1.250:5000")
-            socket.on('connect', function() {
+    <script>
+        $(document).ready(function () {
+            var socket = io.connect("http://10.40.1.213:5000");
+
+            socket.on('connect', function () {
                 socket.send("User Connected!");
             });
-            socket.on('message', function(data) {
+
+            socket.on('message', function (data) {
                 $('#messages').append($('<p>').text(data));
+                $('#messages').scrollTop($('#messages')[0].scrollHeight); // Auto-scroll to bottom
             });
 
-            $('#sendBtn').on('click', function() {
-                console.log("Hello");
-                socket.send($('#username').val() + ':' + $('#message').val());
-                $('#message').val('');
+            $(document).on('click', '#sendBtn', function () {
+                var username = $('#username').val().trim();
+                var message = $('#message').val().trim();
+                if (username && message) {
+                    socket.send(username + ': ' + message);
+                    $('#message').val('');
+                } else {
+                    alert('Please enter both username and message.');
+                }
             });
 
-        })
+            // Press Enter to send message
+            $('#message').keypress(function (e) {
+                if (e.which == 13) {
+                    $('#sendBtn').click();
+                    return false;
+                }
+            });
+        });
     </script>
-    <div id="messages" style="margin: 0 auto; width: 60%; text-align: left; min-height: 300px">
-    </div>
-    <input type="text" id="username" placeholder="Username" required>
-    <input type="text" id="message" placeholder="Message" required>
-    <button id="sendBtn">Send</button>
 </body>
 
 </html>
