@@ -19,29 +19,44 @@
 
     <script>
         $(document).ready(function () {
-            var socket = io.connect("http://localhost");
+            var socket = io.connect("http://192.168.1.250:5000");
 
             // Function to prompt for username and message
             function getUsernameAndMessage() {
                 var username = prompt("Enter your username:");
-                var room = prompt("Enter the room number: ");
-                if (username && room) {
-                    return { username: username.trim(), room: room.trim() };
+                var message = prompt("Enter your message:");
+                if (username && message) {
+                    var userMessage = { username: username.trim(), message: message.trim() };
+                    $('#messages').append('<p><strong>' + userMessage.username + ':</strong> ' + userMessage.message + '</p>');
+                    return userMessage;
                 } else {
-                    return null; // Return null if either username or message is empty
+                    alert('Username and message cannot be empty.');
+                    return null;
                 }
             }
 
             // Function to prompt for room name
             function getRoom() {
                 var room = prompt("Enter the room name:");
-                return room ? room.trim() : null; // Return room name if provided, otherwise return null
+                if (room) {
+                    $('#messages').append('<p><em>Joining room:</em> ' + room + '</p>');
+                    return room.trim();
+                } else {
+                    alert('Room name cannot be empty.');
+                    return null;
+                }
             }
 
             // Function to prompt for message in a specific room
             function getMessageInRoom(room) {
                 var message = prompt("Enter your message in room '" + room + "':");
-                return message ? message.trim() : null; // Return message if provided, otherwise return null
+                if (message) {
+                    $('#messages').append('<p><em>In room ' + room + ':</em> ' + message + '</p>');
+                    return message.trim();
+                } else {
+                    alert('Message cannot be empty.');
+                    return null;
+                }
             }
 
             // Prompt for username and message
@@ -52,14 +67,8 @@
                     var messageInRoom = getMessageInRoom(room);
                     if (messageInRoom) {
                         socket.emit('chatMessage', { username: userMessage.username, room: room, message: messageInRoom });
-                    } else {
-                        alert('Message cannot be empty.');
                     }
-                } else {
-                    alert('Room name cannot be empty.');
                 }
-            } else {
-                alert('Username and message cannot be empty.');
             }
         });
     </script>
