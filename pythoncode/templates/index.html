@@ -15,46 +15,52 @@
     <div id="container">
         <h2>Chat App</h2>
         <div id="messages"></div>
-        <input type="text" id="username" placeholder="Username" required>
-        <input type="text" id="room" placeholder="Room" required> <!-- Add input for room -->
-        <input type="text" id="message" placeholder="Message" required>
-        <button id="sendBtn">Send</button>
     </div>
 
     <script>
         $(document).ready(function () {
             var socket = io.connect("http://localhost");
 
-            socket.on('connect', function () {
-                socket.send("User Connected!");
-            });
-
-            socket.on('message', function (data) {
-                $('#messages').append($('<p>').text(data));
-                $('#messages').scrollTop($('#messages')[0].scrollHeight); // Auto-scroll to bottom
-            });
-
-            $(document).on('click', '#sendBtn', function () {
-                var username = $('#username').val().trim();
-                var room = $('#room').val().trim(); // Get room name
-                var message = $('#message').val().trim();
-                if (username && room && message) { // Check if username, room, and message are not empty
-                    socket.emit('chatMessage', { username: username, room: room, message: message }); // Emit chatMessage event with room information
-                    $('#messages').append($('<p>').text(username + ': ' + message+' Room'+ room)); // Display the sent message
-                    $('#messages').scrollTop($('#messages')[0].scrollHeight); // Auto-scroll to bottom
-                    $('#message').val('');
+            // Function to prompt for username and message
+            function getUsernameAndMessage() {
+                var username = prompt("Enter your username:");
+                var room = prompt("Enter the room number: ");
+                if (username && room) {
+                    return { username: username.trim(), room: room.trim() };
                 } else {
-                    alert('Please enter username, room, and message.');
+                    return null; // Return null if either username or message is empty
                 }
-            });
+            }
 
-            // Press Enter to send message
-            $('#message').keypress(function (e) {
-                if (e.which == 13) {
-                    $('#sendBtn').click();
-                    return false;
+            // Function to prompt for room name
+            function getRoom() {
+                var room = prompt("Enter the room name:");
+                return room ? room.trim() : null; // Return room name if provided, otherwise return null
+            }
+
+            // Function to prompt for message in a specific room
+            function getMessageInRoom(room) {
+                var message = prompt("Enter your message in room '" + room + "':");
+                return message ? message.trim() : null; // Return message if provided, otherwise return null
+            }
+
+            // Prompt for username and message
+            var userMessage = getUsernameAndMessage();
+            if (userMessage) {
+                var room = getRoom();
+                if (room) {
+                    var messageInRoom = getMessageInRoom(room);
+                    if (messageInRoom) {
+                        socket.emit('chatMessage', { username: userMessage.username, room: room, message: messageInRoom });
+                    } else {
+                        alert('Message cannot be empty.');
+                    }
+                } else {
+                    alert('Room name cannot be empty.');
                 }
-            });
+            } else {
+                alert('Username and message cannot be empty.');
+            }
         });
     </script>
 </body>
