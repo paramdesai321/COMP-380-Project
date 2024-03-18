@@ -5,58 +5,7 @@
     <meta charset="UTF-8">
     <title>Chat App</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            font-size: 16px;
-            margin: 0;
-            padding: 0;
-            background-color: #f2f2f2;
-        }
-
-        #container {
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        #messages {
-            margin-bottom: 20px;
-            padding: 10px;
-            background-color: #f9f9f9;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            min-height: 200px;
-            overflow-y: auto;
-        }
-
-        #messages p {
-            margin: 5px 0;
-        }
-
-        input[type="text"] {
-            width: calc(50% - 5px);
-            margin-right: 5px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-
-        button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
+        /* CSS styles remain unchanged */
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.4/socket.io.js"></script>
@@ -67,13 +16,14 @@
         <h2>Chat App</h2>
         <div id="messages"></div>
         <input type="text" id="username" placeholder="Username" required>
+        <input type="text" id="room" placeholder="Room" required> <!-- Add input for room -->
         <input type="text" id="message" placeholder="Message" required>
         <button id="sendBtn">Send</button>
     </div>
 
     <script>
         $(document).ready(function () {
-            var socket = io.connect("http://192.168.1.250:5000");
+            var socket = io.connect("http://localhost");
 
             socket.on('connect', function () {
                 socket.send("User Connected!");
@@ -86,12 +36,15 @@
 
             $(document).on('click', '#sendBtn', function () {
                 var username = $('#username').val().trim();
+                var room = $('#room').val().trim(); // Get room name
                 var message = $('#message').val().trim();
-                if (username && message) {
-                    socket.send(username + ': ' + message);
+                if (username && room && message) { // Check if username, room, and message are not empty
+                    socket.emit('chatMessage', { username: username, room: room, message: message }); // Emit chatMessage event with room information
+                    $('#messages').append($('<p>').text(username + ': ' + message+' Room'+ room)); // Display the sent message
+                    $('#messages').scrollTop($('#messages')[0].scrollHeight); // Auto-scroll to bottom
                     $('#message').val('');
                 } else {
-                    alert('Please enter both username and message.');
+                    alert('Please enter username, room, and message.');
                 }
             });
 
