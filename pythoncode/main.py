@@ -18,6 +18,6 @@ def index():
 
 
 if __name__ == '__main__':
-    socketio.run(app,host="192.168.1.250",allow_unsafe_werkzeug=True)
+    socketio.run(app,host="localhost",allow_unsafe_werkzeug=True)
 
 
