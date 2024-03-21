@@ -1,7 +1,15 @@
 import React from 'react';
 import { ScrollView, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const MyStatsPage = () => {
+
+  const navigation = useNavigation(); // Initialize navigation
+
+  const handleProfile = () => {
+    navigation.navigate('Profile');
+  };
+
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.sectionTitle}>My Stats</Text>
@@ -63,6 +71,11 @@ const MyStatsPage = () => {
         <Text>Omega3 1 tablet after meal</Text>
         <Text>Aspirin 1 tablet after meal</Text>
       </View>
+
+
+      <TouchableOpacity style={styles.button} onPress={handleProfile}>
+        <Text style={styles.buttonText}>Go to Profile</Text>
+      </TouchableOpacity>
 
     </ScrollView>
   );

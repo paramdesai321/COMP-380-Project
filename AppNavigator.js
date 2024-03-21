@@ -8,6 +8,7 @@ import BottomNavBar from './components/BottomNavBar';
 
 import { Image } from 'react-native';
 import { StyleSheet } from 'react-native';
+import Profile from './components/Profile';
 
 
 // Import other screens here
@@ -64,6 +65,16 @@ const AppNavigator = () => (
         <Stack.Screen name= "MyStats" component={MyStats}
           options={{
             title: 'My Stats',
+            tabBarVisible: true,
+            // headerStyle: {
+            //   backgroundColor: 'yellow',
+            // },
+          }}
+        
+        />
+        <Stack.Screen name= "Profile" component={Profile}
+          options={{
+            title: 'Profile',
             tabBarVisible: true,
             // headerStyle: {
             //   backgroundColor: 'yellow',
