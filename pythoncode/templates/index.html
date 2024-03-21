@@ -37,7 +37,7 @@
                     } else {
                         socket.send(username + ': ' + message);
                     }
-                    $('#messages').append('<p><strong>' + username + ':</strong> ' + message + '</p>');
+                    $('#messages').append('<p><strong>' + username + ':</strong> ' + message + '</p>'+);
                     $('#messages').scrollTop($('#messages')[0].scrollHeight); // Auto-scroll to bottom
                     $('#username').val('');
                     $('#message').val('');
@@ -66,6 +66,7 @@
                 if (response && response.trim().toLowerCase() !== 'quit') {
                     sendMessage();
                     continueOrQuit();
+
                 }
             }
 
